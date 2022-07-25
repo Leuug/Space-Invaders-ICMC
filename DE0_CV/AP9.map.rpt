@@ -1,0 +1,396 @@
+Analysis & Synthesis report for AP9
+Wed Jul 13 18:07:35 2022
+Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2021  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++---------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                              ;
++-----------------------------+---------------------------------------------+
+; Analysis & Synthesis Status ; Failed - Wed Jul 13 18:07:35 2022           ;
+; Quartus Prime Version       ; 21.1.0 Build 842 10/21/2021 SJ Lite Edition ;
+; Revision Name               ; AP9                                         ;
+; Top-level Entity Name       ; AP9                                         ;
+; Family                      ; Cyclone V                                   ;
+; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
+; Total registers             ; N/A until Partition Merge                   ;
+; Total pins                  ; N/A until Partition Merge                   ;
+; Total virtual pins          ; N/A until Partition Merge                   ;
+; Total block memory bits     ; N/A until Partition Merge                   ;
+; Total PLLs                  ; N/A until Partition Merge                   ;
+; Total DLLs                  ; N/A until Partition Merge                   ;
++-----------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CEBA4F23C7        ;                    ;
+; Top-level entity name                                                           ; AP9                ; AP9                ;
+; Family name                                                                     ; Cyclone V          ; Cyclone IV GX      ;
+; Use smart compilation                                                           ; On                 ; Off                ;
+; Timing-Driven Synthesis                                                         ; Off                ; On                 ;
+; Block Design Naming                                                             ; QuartusII          ; Auto               ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
+    Info: Processing started: Wed Jul 13 18:07:25 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off AP9 -c AP9
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file cpu.vhd
+    Info (12022): Found design unit 1: cpu-main File: Z:/atividades-p-org-comp/DE0_CV/cpu.vhd Line: 35
+    Info (12023): Found entity 1: cpu File: Z:/atividades-p-org-comp/DE0_CV/cpu.vhd Line: 10
+Info (12021): Found 1 design units, including 1 entities, in source file ap9.bdf
+    Info (12023): Found entity 1: AP9
+Info (12021): Found 2 design units, including 1 entities, in source file lpm_rom0.vhd
+    Info (12022): Found design unit 1: lpm_rom0-SYN File: Z:/atividades-p-org-comp/DE0_CV/lpm_rom0.vhd Line: 52
+    Info (12023): Found entity 1: lpm_rom0 File: Z:/atividades-p-org-comp/DE0_CV/lpm_rom0.vhd Line: 42
+Info (12021): Found 2 design units, including 1 entities, in source file text_drawer.vhd
+    Info (12022): Found design unit 1: TEXT_DRAWER-main File: Z:/atividades-p-org-comp/DE0_CV/TEXT_DRAWER.vhd Line: 23
+    Info (12023): Found entity 1: TEXT_DRAWER File: Z:/atividades-p-org-comp/DE0_CV/TEXT_DRAWER.vhd Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file vga_mod.bdf
+    Info (12023): Found entity 1: VGA_MOD
+Info (12021): Found 2 design units, including 1 entities, in source file vga_sync.vhd
+    Info (12022): Found design unit 1: VGA_SYNC-main File: Z:/atividades-p-org-comp/DE0_CV/vga_sync.vhd Line: 18
+    Info (12023): Found entity 1: VGA_SYNC File: Z:/atividades-p-org-comp/DE0_CV/vga_sync.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file kb_ascii.vhd
+    Info (12022): Found design unit 1: KB_ASCII-main File: Z:/atividades-p-org-comp/DE0_CV/KB_ASCII.vhd Line: 21
+    Info (12023): Found entity 1: KB_ASCII File: Z:/atividades-p-org-comp/DE0_CV/KB_ASCII.vhd Line: 8
+Info (12021): Found 2 design units, including 1 entities, in source file hex_2_7seg.vhd
+    Info (12022): Found design unit 1: hex_2_7seg-main File: Z:/atividades-p-org-comp/DE0_CV/hex_2_7seg.vhd Line: 13
+    Info (12023): Found entity 1: hex_2_7seg File: Z:/atividades-p-org-comp/DE0_CV/hex_2_7seg.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file lcd_mod.vhd
+    Info (12022): Found design unit 1: LCD_MOD-main File: Z:/atividades-p-org-comp/DE0_CV/LCD_MOD.vhd Line: 20
+    Info (12023): Found entity 1: LCD_MOD File: Z:/atividades-p-org-comp/DE0_CV/LCD_MOD.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file ascii_conv.vhd
+    Info (12022): Found design unit 1: ASCII_CONV-main File: Z:/atividades-p-org-comp/DE0_CV/ASCII_CONV.vhd Line: 12
+    Info (12023): Found entity 1: ASCII_CONV File: Z:/atividades-p-org-comp/DE0_CV/ASCII_CONV.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file ram.vhd
+    Info (12022): Found design unit 1: ram-SYN File: Z:/atividades-p-org-comp/DE0_CV/RAM.vhd Line: 54
+    Info (12023): Found entity 1: RAM File: Z:/atividades-p-org-comp/DE0_CV/RAM.vhd Line: 42
+Info (12021): Found 2 design units, including 1 entities, in source file pos_conv.vhd
+    Info (12022): Found design unit 1: POS_CONV-main File: Z:/atividades-p-org-comp/DE0_CV/POS_CONV.vhd Line: 15
+    Info (12023): Found entity 1: POS_CONV File: Z:/atividades-p-org-comp/DE0_CV/POS_CONV.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file keyviewer.vhd
+    Info (12022): Found design unit 1: keyviewer-behav File: Z:/atividades-p-org-comp/DE0_CV/keyviewer.vhd Line: 16
+    Info (12023): Found entity 1: keyviewer File: Z:/atividades-p-org-comp/DE0_CV/keyviewer.vhd Line: 5
+Info (12127): Elaborating entity "AP9" for the top level hierarchy
+Warning (275089): Not all bits in bus "LEDR[8..1]" are used
+Warning (275089): Not all bits in bus "SW[9..0]" are used
+Warning (275009): Pin "SW[6]" not connected
+Warning (275009): Pin "SW[7]" not connected
+Info (12128): Elaborating entity "VGA_MOD" for hierarchy "VGA_MOD:inst"
+Warning (12125): Using design file video_filter.bdf, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: VIDEO_FILTER
+Info (12128): Elaborating entity "VIDEO_FILTER" for hierarchy "VGA_MOD:inst|VIDEO_FILTER:inst8"
+Warning (12125): Using design file lpm_dff0.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: lpm_dff0-SYN File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff0.vhd Line: 52
+    Info (12023): Found entity 1: lpm_dff0 File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff0.vhd Line: 42
+Info (12128): Elaborating entity "lpm_dff0" for hierarchy "VGA_MOD:inst|VIDEO_FILTER:inst8|lpm_dff0:inst1"
+Info (12128): Elaborating entity "lpm_ff" for hierarchy "VGA_MOD:inst|VIDEO_FILTER:inst8|lpm_dff0:inst1|lpm_ff:lpm_ff_component" File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff0.vhd Line: 80
+Info (12130): Elaborated megafunction instantiation "VGA_MOD:inst|VIDEO_FILTER:inst8|lpm_dff0:inst1|lpm_ff:lpm_ff_component" File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff0.vhd Line: 80
+Info (12133): Instantiated megafunction "VGA_MOD:inst|VIDEO_FILTER:inst8|lpm_dff0:inst1|lpm_ff:lpm_ff_component" with the following parameter: File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff0.vhd Line: 80
+    Info (12134): Parameter "lpm_fftype" = "DFF"
+    Info (12134): Parameter "lpm_type" = "LPM_FF"
+    Info (12134): Parameter "lpm_width" = "1"
+Warning (12125): Using design file lpm_dff2.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: lpm_dff2-SYN File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff2.vhd Line: 52
+    Info (12023): Found entity 1: lpm_dff2 File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff2.vhd Line: 42
+Info (12128): Elaborating entity "lpm_dff2" for hierarchy "VGA_MOD:inst|VIDEO_FILTER:inst8|lpm_dff2:inst4"
+Info (12128): Elaborating entity "lpm_ff" for hierarchy "VGA_MOD:inst|VIDEO_FILTER:inst8|lpm_dff2:inst4|lpm_ff:lpm_ff_component" File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff2.vhd Line: 74
+Info (12130): Elaborated megafunction instantiation "VGA_MOD:inst|VIDEO_FILTER:inst8|lpm_dff2:inst4|lpm_ff:lpm_ff_component" File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff2.vhd Line: 74
+Info (12133): Instantiated megafunction "VGA_MOD:inst|VIDEO_FILTER:inst8|lpm_dff2:inst4|lpm_ff:lpm_ff_component" with the following parameter: File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff2.vhd Line: 74
+    Info (12134): Parameter "lpm_fftype" = "DFF"
+    Info (12134): Parameter "lpm_type" = "LPM_FF"
+    Info (12134): Parameter "lpm_width" = "4"
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_MOD:inst|VGA_SYNC:inst"
+Warning (10492): VHDL Process Statement warning at vga_sync.vhd(73): signal "Hcnt" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: Z:/atividades-p-org-comp/DE0_CV/vga_sync.vhd Line: 73
+Warning (10492): VHDL Process Statement warning at vga_sync.vhd(73): signal "Vcnt" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: Z:/atividades-p-org-comp/DE0_CV/vga_sync.vhd Line: 73
+Warning (12125): Using design file color_bridge.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: COLOR_BRIDGE-main File: Z:/atividades-p-org-comp/DE0_CV/color_bridge.vhd Line: 18
+    Info (12023): Found entity 1: COLOR_BRIDGE File: Z:/atividades-p-org-comp/DE0_CV/color_bridge.vhd Line: 6
+Info (12128): Elaborating entity "COLOR_BRIDGE" for hierarchy "VGA_MOD:inst|COLOR_BRIDGE:inst1"
+Info (12128): Elaborating entity "BUSMUX" for hierarchy "VGA_MOD:inst|BUSMUX:inst13"
+Info (12130): Elaborated megafunction instantiation "VGA_MOD:inst|BUSMUX:inst13"
+Info (12133): Instantiated megafunction "VGA_MOD:inst|BUSMUX:inst13" with the following parameter:
+    Info (12134): Parameter "WIDTH" = "4"
+Info (12128): Elaborating entity "lpm_mux" for hierarchy "VGA_MOD:inst|BUSMUX:inst13|lpm_mux:$00000" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/busmux.tdf Line: 44
+Info (12131): Elaborated megafunction instantiation "VGA_MOD:inst|BUSMUX:inst13|lpm_mux:$00000", which is child of megafunction instantiation "VGA_MOD:inst|BUSMUX:inst13" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/busmux.tdf Line: 44
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_sjc.tdf
+    Info (12023): Found entity 1: mux_sjc File: Z:/atividades-p-org-comp/DE0_CV/db/mux_sjc.tdf Line: 23
+Info (12128): Elaborating entity "mux_sjc" for hierarchy "VGA_MOD:inst|BUSMUX:inst13|lpm_mux:$00000|mux_sjc:auto_generated" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/lpm_mux.tdf Line: 87
+Warning (12125): Using design file lpm_ram_dq0.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: lpm_ram_dq0-SYN File: Z:/atividades-p-org-comp/DE0_CV/lpm_ram_dq0.vhd Line: 54
+    Info (12023): Found entity 1: lpm_ram_dq0 File: Z:/atividades-p-org-comp/DE0_CV/lpm_ram_dq0.vhd Line: 42
+Info (12128): Elaborating entity "lpm_ram_dq0" for hierarchy "VGA_MOD:inst|lpm_ram_dq0:inst3"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "VGA_MOD:inst|lpm_ram_dq0:inst3|altsyncram:altsyncram_component" File: Z:/atividades-p-org-comp/DE0_CV/lpm_ram_dq0.vhd Line: 89
+Info (12130): Elaborated megafunction instantiation "VGA_MOD:inst|lpm_ram_dq0:inst3|altsyncram:altsyncram_component" File: Z:/atividades-p-org-comp/DE0_CV/lpm_ram_dq0.vhd Line: 89
+Info (12133): Instantiated megafunction "VGA_MOD:inst|lpm_ram_dq0:inst3|altsyncram:altsyncram_component" with the following parameter: File: Z:/atividades-p-org-comp/DE0_CV/lpm_ram_dq0.vhd Line: 89
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "video_mem1.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "65536"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "widthad_a" = "16"
+    Info (12134): Parameter "width_a" = "4"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_o1j1.tdf
+    Info (12023): Found entity 1: altsyncram_o1j1 File: Z:/atividades-p-org-comp/DE0_CV/db/altsyncram_o1j1.tdf Line: 34
+Info (12128): Elaborating entity "altsyncram_o1j1" for hierarchy "VGA_MOD:inst|lpm_ram_dq0:inst3|altsyncram:altsyncram_component|altsyncram_o1j1:auto_generated" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_dla.tdf
+    Info (12023): Found entity 1: decode_dla File: Z:/atividades-p-org-comp/DE0_CV/db/decode_dla.tdf Line: 23
+Info (12128): Elaborating entity "decode_dla" for hierarchy "VGA_MOD:inst|lpm_ram_dq0:inst3|altsyncram:altsyncram_component|altsyncram_o1j1:auto_generated|decode_dla:decode3" File: Z:/atividades-p-org-comp/DE0_CV/db/altsyncram_o1j1.tdf Line: 45
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_61a.tdf
+    Info (12023): Found entity 1: decode_61a File: Z:/atividades-p-org-comp/DE0_CV/db/decode_61a.tdf Line: 23
+Info (12128): Elaborating entity "decode_61a" for hierarchy "VGA_MOD:inst|lpm_ram_dq0:inst3|altsyncram:altsyncram_component|altsyncram_o1j1:auto_generated|decode_61a:rden_decode" File: Z:/atividades-p-org-comp/DE0_CV/db/altsyncram_o1j1.tdf Line: 46
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_pfb.tdf
+    Info (12023): Found entity 1: mux_pfb File: Z:/atividades-p-org-comp/DE0_CV/db/mux_pfb.tdf Line: 23
+Info (12128): Elaborating entity "mux_pfb" for hierarchy "VGA_MOD:inst|lpm_ram_dq0:inst3|altsyncram:altsyncram_component|altsyncram_o1j1:auto_generated|mux_pfb:mux2" File: Z:/atividades-p-org-comp/DE0_CV/db/altsyncram_o1j1.tdf Line: 47
+Warning (12125): Using design file demux.bdf, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: DEMUX
+Info (12128): Elaborating entity "DEMUX" for hierarchy "VGA_MOD:inst|DEMUX:inst18"
+Warning (12125): Using design file fifo0.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: fifo0-SYN File: Z:/atividades-p-org-comp/DE0_CV/fifo0.vhd Line: 56
+    Info (12023): Found entity 1: fifo0 File: Z:/atividades-p-org-comp/DE0_CV/fifo0.vhd Line: 42
+Info (12128): Elaborating entity "fifo0" for hierarchy "VGA_MOD:inst|fifo0:inst7"
+Info (12128): Elaborating entity "scfifo" for hierarchy "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component" File: Z:/atividades-p-org-comp/DE0_CV/fifo0.vhd Line: 91
+Info (12130): Elaborated megafunction instantiation "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component" File: Z:/atividades-p-org-comp/DE0_CV/fifo0.vhd Line: 91
+Info (12133): Instantiated megafunction "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component" with the following parameter: File: Z:/atividades-p-org-comp/DE0_CV/fifo0.vhd Line: 91
+    Info (12134): Parameter "add_ram_output_register" = "ON"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_numwords" = "4096"
+    Info (12134): Parameter "lpm_showahead" = "ON"
+    Info (12134): Parameter "lpm_type" = "scfifo"
+    Info (12134): Parameter "lpm_width" = "21"
+    Info (12134): Parameter "lpm_widthu" = "12"
+    Info (12134): Parameter "overflow_checking" = "ON"
+    Info (12134): Parameter "underflow_checking" = "ON"
+    Info (12134): Parameter "use_eab" = "ON"
+Info (12021): Found 1 design units, including 1 entities, in source file db/scfifo_2491.tdf
+    Info (12023): Found entity 1: scfifo_2491 File: Z:/atividades-p-org-comp/DE0_CV/db/scfifo_2491.tdf Line: 25
+Info (12128): Elaborating entity "scfifo_2491" for hierarchy "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component|scfifo_2491:auto_generated" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/scfifo.tdf Line: 300
+Info (12021): Found 1 design units, including 1 entities, in source file db/a_dpfifo_9a91.tdf
+    Info (12023): Found entity 1: a_dpfifo_9a91 File: Z:/atividades-p-org-comp/DE0_CV/db/a_dpfifo_9a91.tdf Line: 33
+Info (12128): Elaborating entity "a_dpfifo_9a91" for hierarchy "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component|scfifo_2491:auto_generated|a_dpfifo_9a91:dpfifo" File: Z:/atividades-p-org-comp/DE0_CV/db/scfifo_2491.tdf Line: 36
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_fqn1.tdf
+    Info (12023): Found entity 1: altsyncram_fqn1 File: Z:/atividades-p-org-comp/DE0_CV/db/altsyncram_fqn1.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_fqn1" for hierarchy "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component|scfifo_2491:auto_generated|a_dpfifo_9a91:dpfifo|altsyncram_fqn1:FIFOram" File: Z:/atividades-p-org-comp/DE0_CV/db/a_dpfifo_9a91.tdf Line: 45
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_im8.tdf
+    Info (12023): Found entity 1: cmpr_im8 File: Z:/atividades-p-org-comp/DE0_CV/db/cmpr_im8.tdf Line: 23
+Info (12128): Elaborating entity "cmpr_im8" for hierarchy "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component|scfifo_2491:auto_generated|a_dpfifo_9a91:dpfifo|cmpr_im8:almost_full_comparer" File: Z:/atividades-p-org-comp/DE0_CV/db/a_dpfifo_9a91.tdf Line: 54
+Info (12128): Elaborating entity "cmpr_im8" for hierarchy "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component|scfifo_2491:auto_generated|a_dpfifo_9a91:dpfifo|cmpr_im8:three_comparison" File: Z:/atividades-p-org-comp/DE0_CV/db/a_dpfifo_9a91.tdf Line: 55
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_vhb.tdf
+    Info (12023): Found entity 1: cntr_vhb File: Z:/atividades-p-org-comp/DE0_CV/db/cntr_vhb.tdf Line: 26
+Info (12128): Elaborating entity "cntr_vhb" for hierarchy "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component|scfifo_2491:auto_generated|a_dpfifo_9a91:dpfifo|cntr_vhb:rd_ptr_msb" File: Z:/atividades-p-org-comp/DE0_CV/db/a_dpfifo_9a91.tdf Line: 56
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_ci7.tdf
+    Info (12023): Found entity 1: cntr_ci7 File: Z:/atividades-p-org-comp/DE0_CV/db/cntr_ci7.tdf Line: 26
+Info (12128): Elaborating entity "cntr_ci7" for hierarchy "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component|scfifo_2491:auto_generated|a_dpfifo_9a91:dpfifo|cntr_ci7:usedw_counter" File: Z:/atividades-p-org-comp/DE0_CV/db/a_dpfifo_9a91.tdf Line: 57
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_0ib.tdf
+    Info (12023): Found entity 1: cntr_0ib File: Z:/atividades-p-org-comp/DE0_CV/db/cntr_0ib.tdf Line: 26
+Info (12128): Elaborating entity "cntr_0ib" for hierarchy "VGA_MOD:inst|fifo0:inst7|scfifo:scfifo_component|scfifo_2491:auto_generated|a_dpfifo_9a91:dpfifo|cntr_0ib:wr_ptr" File: Z:/atividades-p-org-comp/DE0_CV/db/a_dpfifo_9a91.tdf Line: 58
+Info (12128): Elaborating entity "BUSMUX" for hierarchy "VGA_MOD:inst|BUSMUX:inst15"
+Info (12130): Elaborated megafunction instantiation "VGA_MOD:inst|BUSMUX:inst15"
+Info (12133): Instantiated megafunction "VGA_MOD:inst|BUSMUX:inst15" with the following parameter:
+    Info (12134): Parameter "WIDTH" = "16"
+Info (12128): Elaborating entity "lpm_mux" for hierarchy "VGA_MOD:inst|BUSMUX:inst15|lpm_mux:$00000" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/busmux.tdf Line: 44
+Info (12131): Elaborated megafunction instantiation "VGA_MOD:inst|BUSMUX:inst15|lpm_mux:$00000", which is child of megafunction instantiation "VGA_MOD:inst|BUSMUX:inst15" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/busmux.tdf Line: 44
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_flc.tdf
+    Info (12023): Found entity 1: mux_flc File: Z:/atividades-p-org-comp/DE0_CV/db/mux_flc.tdf Line: 23
+Info (12128): Elaborating entity "mux_flc" for hierarchy "VGA_MOD:inst|BUSMUX:inst15|lpm_mux:$00000|mux_flc:auto_generated" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/lpm_mux.tdf Line: 87
+Warning (12125): Using design file lpm_ram_dq1.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: lpm_ram_dq1-SYN File: Z:/atividades-p-org-comp/DE0_CV/lpm_ram_dq1.vhd Line: 54
+    Info (12023): Found entity 1: lpm_ram_dq1 File: Z:/atividades-p-org-comp/DE0_CV/lpm_ram_dq1.vhd Line: 42
+Info (12128): Elaborating entity "lpm_ram_dq1" for hierarchy "VGA_MOD:inst|lpm_ram_dq1:inst2"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "VGA_MOD:inst|lpm_ram_dq1:inst2|altsyncram:altsyncram_component" File: Z:/atividades-p-org-comp/DE0_CV/lpm_ram_dq1.vhd Line: 89
+Info (12130): Elaborated megafunction instantiation "VGA_MOD:inst|lpm_ram_dq1:inst2|altsyncram:altsyncram_component" File: Z:/atividades-p-org-comp/DE0_CV/lpm_ram_dq1.vhd Line: 89
+Info (12133): Instantiated megafunction "VGA_MOD:inst|lpm_ram_dq1:inst2|altsyncram:altsyncram_component" with the following parameter: File: Z:/atividades-p-org-comp/DE0_CV/lpm_ram_dq1.vhd Line: 89
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "video_mem2.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "16384"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "widthad_a" = "14"
+    Info (12134): Parameter "width_a" = "4"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_k1j1.tdf
+    Info (12023): Found entity 1: altsyncram_k1j1 File: Z:/atividades-p-org-comp/DE0_CV/db/altsyncram_k1j1.tdf Line: 34
+Info (12128): Elaborating entity "altsyncram_k1j1" for hierarchy "VGA_MOD:inst|lpm_ram_dq1:inst2|altsyncram:altsyncram_component|altsyncram_k1j1:auto_generated" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_5la.tdf
+    Info (12023): Found entity 1: decode_5la File: Z:/atividades-p-org-comp/DE0_CV/db/decode_5la.tdf Line: 23
+Info (12128): Elaborating entity "decode_5la" for hierarchy "VGA_MOD:inst|lpm_ram_dq1:inst2|altsyncram:altsyncram_component|altsyncram_k1j1:auto_generated|decode_5la:decode3" File: Z:/atividades-p-org-comp/DE0_CV/db/altsyncram_k1j1.tdf Line: 45
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_u0a.tdf
+    Info (12023): Found entity 1: decode_u0a File: Z:/atividades-p-org-comp/DE0_CV/db/decode_u0a.tdf Line: 23
+Info (12128): Elaborating entity "decode_u0a" for hierarchy "VGA_MOD:inst|lpm_ram_dq1:inst2|altsyncram:altsyncram_component|altsyncram_k1j1:auto_generated|decode_u0a:rden_decode" File: Z:/atividades-p-org-comp/DE0_CV/db/altsyncram_k1j1.tdf Line: 46
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_hfb.tdf
+    Info (12023): Found entity 1: mux_hfb File: Z:/atividades-p-org-comp/DE0_CV/db/mux_hfb.tdf Line: 23
+Info (12128): Elaborating entity "mux_hfb" for hierarchy "VGA_MOD:inst|lpm_ram_dq1:inst2|altsyncram:altsyncram_component|altsyncram_k1j1:auto_generated|mux_hfb:mux2" File: Z:/atividades-p-org-comp/DE0_CV/db/altsyncram_k1j1.tdf Line: 47
+Info (12128): Elaborating entity "BUSMUX" for hierarchy "VGA_MOD:inst|BUSMUX:inst14"
+Info (12130): Elaborated megafunction instantiation "VGA_MOD:inst|BUSMUX:inst14"
+Info (12133): Instantiated megafunction "VGA_MOD:inst|BUSMUX:inst14" with the following parameter:
+    Info (12134): Parameter "WIDTH" = "14"
+Info (12128): Elaborating entity "lpm_mux" for hierarchy "VGA_MOD:inst|BUSMUX:inst14|lpm_mux:$00000" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/busmux.tdf Line: 44
+Info (12131): Elaborated megafunction instantiation "VGA_MOD:inst|BUSMUX:inst14|lpm_mux:$00000", which is child of megafunction instantiation "VGA_MOD:inst|BUSMUX:inst14" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/busmux.tdf Line: 44
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_dlc.tdf
+    Info (12023): Found entity 1: mux_dlc File: Z:/atividades-p-org-comp/DE0_CV/db/mux_dlc.tdf Line: 23
+Info (12128): Elaborating entity "mux_dlc" for hierarchy "VGA_MOD:inst|BUSMUX:inst14|lpm_mux:$00000|mux_dlc:auto_generated" File: c:/intelfpga_lite/21.1/quartus/libraries/megafunctions/lpm_mux.tdf Line: 87
+Warning (12125): Using design file lpm_dff1.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: lpm_dff1-SYN File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff1.vhd Line: 51
+    Info (12023): Found entity 1: lpm_dff1 File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff1.vhd Line: 42
+Info (12128): Elaborating entity "lpm_dff1" for hierarchy "lpm_dff1:inst1"
+Info (12128): Elaborating entity "lpm_ff" for hierarchy "lpm_dff1:inst1|lpm_ff:lpm_ff_component" File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff1.vhd Line: 74
+Info (12130): Elaborated megafunction instantiation "lpm_dff1:inst1|lpm_ff:lpm_ff_component" File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff1.vhd Line: 74
+Info (12133): Instantiated megafunction "lpm_dff1:inst1|lpm_ff:lpm_ff_component" with the following parameter: File: Z:/atividades-p-org-comp/DE0_CV/lpm_dff1.vhd Line: 74
+    Info (12134): Parameter "lpm_fftype" = "TFF"
+    Info (12134): Parameter "lpm_type" = "LPM_FF"
+    Info (12134): Parameter "lpm_width" = "1"
+Info (12128): Elaborating entity "TEXT_DRAWER" for hierarchy "TEXT_DRAWER:inst2"
+Info (12128): Elaborating entity "cpu" for hierarchy "cpu:inst12"
+Error (10324): VHDL Expression error at cpu.vhd(566): expression ""100"" has 3 elements ; expected 16 elements. File: Z:/atividades-p-org-comp/DE0_CV/cpu.vhd Line: 566
+Error (12152): Can't elaborate user hierarchy "cpu:inst12"
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 16 warnings
+    Error: Peak virtual memory: 4894 megabytes
+    Error: Processing ended: Wed Jul 13 18:07:36 2022
+    Error: Elapsed time: 00:00:11
+    Error: Total CPU time (on all processors): 00:00:20
+
+
