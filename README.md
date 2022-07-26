@@ -10,12 +10,12 @@ A pasta `DE0_CV` contém o projeto da CPU no Quartus, as pastas `persona` e `scr
 
 # Créditos
 
+**Professor:** Eduardo do Valle Simões
+
 **Alunos:**
 - Miguel Reis de Araújo - 12752457
 - Jhonathan Oliveira Alves - 11838116
 - Danilo Alves - 10408390
-
-**Professor:** Eduardo do Valle Simões
 
 ## Outros projetos utilizados na produção do jogo
 
