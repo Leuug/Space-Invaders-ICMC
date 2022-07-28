@@ -163,6 +163,7 @@ atirador_0 : var #1
 atirador_1 : var #1
 atirador_2 : var #1
 atirador_3 : var #1
+atirador_4 : var #1
 
 ;---- Inicio do Programa Principal -----
 
@@ -892,8 +893,6 @@ main_game:
 	push r2
 	push r3
 	push r4
-	push r5
-	push r6
 
 	;setando a posicao inicial do tanque
 	loadn r1, #1059
@@ -916,10 +915,20 @@ main_game:
 	store alienPosition, r0
 
 	; setando os alien do front como atiradores
-	loadn r3, #21
+	loadn r4, #20
+	store atirador_0, r4
+	
+	loadn r4, #21
+	store atirador_1, r4
+	
 	loadn r4, #22
-	loadn r5, #23
-	loadn r6, #24
+	store atirador_2, r4
+	
+	loadn r4, #23
+	store atirador_3, r4
+	
+	loadn r4, #24
+	store atirador_4, r4
 
 	;; ------- setando valores dos alien para verdadeiro -------
 	loadn r3, #1
@@ -1918,107 +1927,542 @@ verify_colis_alien_4:
 	jeq rem_alien_4
 	jmp fim_colisoes
 	
+	loadn r2, #1
+	
 	rem_alien_24:
 		store alien_24, r4
+		
+		load r1, alien_19
+		cmp r1, r2
+		jeq set_alien19_atirador
+		jeq cont_alien_24
+		
+		load r1, alien_14
+		cmp r1, r2
+		jeq set_alien14_atirador
+		jeq cont_alien_24
+		
+		load r1, alien_9
+		cmp r1, r2
+		jeq set_alien9_atirador
+		jeq cont_alien_24
+		
+		load r1, alien_4
+		cmp r1, r2
+		jeq set_alien4_atirador
+		jeq cont_alien_24
+		
+		cont_alien_24:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
 		
 	rem_alien_23:
 		store alien_23, r4
+		
+		load r1, alien_18
+		cmp r1, r2
+		jeq set_alien18_atirador
+		jeq cont_alien_23
+		
+		load r1, alien_13
+		cmp r1, r2
+		jeq set_alien13_atirador
+		jeq cont_alien_23
+		
+		load r1, alien_8
+		cmp r1, r2
+		jeq set_alien8_atirador
+		jeq cont_alien_23
+		
+		load r1, alien_3
+		cmp r1, r2
+		jeq set_alien3_atirador
+		jeq cont_alien_23
+		
+		cont_alien_23:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
 		
 	rem_alien_22:
 		store alien_22, r4
+		
+		load r1, alien_17
+		cmp r1, r2
+		jeq set_alien17_atirador
+		jeq cont_alien_22
+		
+		load r1, alien_12
+		cmp r1, r2
+		jeq set_alien12_atirador
+		jeq cont_alien_22
+		
+		load r1, alien_7
+		cmp r1, r2
+		jeq set_alien7_atirador
+		jeq cont_alien_22
+		
+		load r1, alien_2
+		cmp r1, r2
+		jeq set_alien2_atirador
+		jeq cont_alien_22
+		
+		cont_alien_22:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_21:
 		store alien_21, r4
+		
+		load r1, alien_16
+		cmp r1, r2
+		jeq set_alien16_atirador
+		jeq cont_alien_21
+		
+		load r1, alien_11
+		cmp r1, r2
+		jeq set_alien11_atirador
+		jeq cont_alien_21
+		
+		load r1, alien_6
+		cmp r1, r2
+		jeq set_alien6_atirador
+		jeq cont_alien_21
+		
+		load r1, alien_1
+		cmp r1, r2
+		jeq set_alien1_atirador
+		jeq cont_alien_21
+		
+		cont_alien_21:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_20:
 		store alien_20, r4
+		
+		load r1, alien_15
+		cmp r1, r2
+		jeq set_alien15_atirador
+		jeq cont_alien_20
+		
+		load r1, alien_10
+		cmp r1, r2
+		jeq set_alien10_atirador
+		jeq cont_alien_20
+		
+		load r1, alien_5
+		cmp r1, r2
+		jeq set_alien5_atirador
+		jeq cont_alien_20
+		
+		load r1, alien_0
+		cmp r1, r2
+		jeq set_alien0_atirador
+		jeq cont_alien_20
+		
+		cont_alien_20:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_19:
 		store alien_19, r4
+		
+		load r3, atirador_4
+		loadn r1, #19
+		cmp r3, r1
+		jgr cont_alien_19
+				
+		load r1, alien_14
+		cmp r1, r2
+		jeq set_alien14_atirador
+		jeq cont_alien_19
+		
+		load r1, alien_9
+		cmp r1, r2
+		jeq set_alien9_atirador
+		jeq cont_alien_19
+		
+		load r1, alien_4
+		cmp r1, r2
+		jeq set_alien4_atirador
+		jeq cont_alien_19
+		
+		cont_alien_19:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_18:
 		store alien_18, r4
+		
+		load r3, atirador_3
+		loadn r1, #18
+		cmp r3, r1
+		jgr cont_alien_18
+		
+		load r1, alien_13
+		cmp r1, r2
+		jeq set_alien13_atirador
+		jeq cont_alien_18
+		
+		load r1, alien_8
+		cmp r1, r2
+		jeq set_alien8_atirador
+		jeq cont_alien_18
+		
+		load r1, alien_3
+		cmp r1, r2
+		jeq set_alien3_atirador
+		jeq cont_alien_18
+		
+		cont_alien_18:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_17:
 		store alien_17, r4
+		
+		load r3, atirador_2
+		loadn r1, #17
+		cmp r3, r1
+		jgr cont_alien_17
+		
+		load r1, alien_12
+		cmp r1, r2
+		jeq set_alien12_atirador
+		jeq cont_alien_17
+		
+		load r1, alien_7
+		cmp r1, r2
+		jeq set_alien7_atirador
+		jeq cont_alien_17
+		
+		load r1, alien_2
+		cmp r1, r2
+		jeq set_alien2_atirador
+		jeq cont_alien_17
+		
+		cont_alien_17:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_16:
 		store alien_16, r4
+		
+		load r3, atirador_1
+		loadn r1, #16
+		cmp r3, r1
+		jgr cont_alien_16
+		
+		load r1, alien_11
+		cmp r1, r2
+		jeq set_alien11_atirador
+		jeq cont_alien_16
+		
+		load r1, alien_6
+		cmp r1, r2
+		jeq set_alien6_atirador
+		jeq cont_alien_16
+		
+		load r1, alien_1
+		cmp r1, r2
+		jeq set_alien1_atirador
+		jeq cont_alien_16
+		
+		cont_alien_16:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_15:
 		store alien_15, r4
+		
+		load r3, atirador_0
+		loadn r1, #15
+		cmp r3, r1
+		jgr cont_alien_15
+		
+		load r1, alien_10
+		cmp r1, r2
+		jeq set_alien10_atirador
+		jeq cont_alien_15
+		
+		load r1, alien_5
+		cmp r1, r2
+		jeq set_alien5_atirador
+		jeq cont_alien_15
+		
+		load r1, alien_0
+		cmp r1, r2
+		jeq set_alien0_atirador
+		jeq cont_alien_15
+		
+		cont_alien_15:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_14:
 		store alien_14, r4
+		
+		load r3, atirador_4
+		loadn r1, #14
+		cmp r3, r1
+		jgr cont_alien_14
+		
+		load r1, alien_9
+		cmp r1, r2
+		jeq set_alien9_atirador
+		jeq cont_alien_14
+		
+		load r1, alien_4
+		cmp r1, r2
+		jeq set_alien4_atirador
+		jeq cont_alien_14
+		
+		cont_alien_14:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_13:
 		store alien_13, r4
+		
+		load r3, atirador_3
+		loadn r1, #13
+		cmp r3, r1
+		jgr cont_alien_13
+		
+		load r1, alien_8
+		cmp r1, r2
+		jeq set_alien8_atirador
+		jeq cont_alien_13
+		
+		load r1, alien_3
+		cmp r1, r2
+		jeq set_alien3_atirador
+		jeq cont_alien_13
+		
+		cont_alien_13:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_12:
 		store alien_12, r4
+		
+		load r3, atirador_2
+		loadn r1, #12
+		cmp r3, r1
+		jgr cont_alien_12
+		
+		load r1, alien_7
+		cmp r1, r2
+		jeq set_alien7_atirador
+		jeq cont_alien_12
+		
+		load r1, alien_2
+		cmp r1, r2
+		jeq set_alien2_atirador
+		jeq cont_alien_12
+		
+		cont_alien_12:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_11:
 		store alien_11, r4
+		
+		load r3, atirador_1
+		loadn r1, #11
+		cmp r3, r1
+		jgr cont_alien_11
+		
+		load r1, alien_6
+		cmp r1, r2
+		jeq set_alien6_atirador
+		jeq cont_alien_11
+		
+		load r1, alien_1
+		cmp r1, r2
+		jeq set_alien1_atirador
+		jeq cont_alien_11
+		
+		cont_alien_11:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_10:
 		store alien_10, r4
+		
+		load r3, atirador_0
+		loadn r1, #10
+		cmp r3, r1
+		jgr cont_alien_10
+		
+		load r1, alien_5
+		cmp r1, r2
+		jeq set_alien5_atirador
+		jeq cont_alien_10
+		
+		load r1, alien_0
+		cmp r1, r2
+		jeq set_alien0_atirador
+		jeq cont_alien_10
+		
+		cont_alien_10:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_9:
 		store alien_9, r4
+		
+		load r3, atirador_4
+		loadn r1, #9
+		cmp r3, r1
+		jgr cont_alien_9
+		
+		load r1, alien_4
+		cmp r1, r2
+		jeq set_alien4_atirador
+
+		cont_alien_9:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+
 	rem_alien_8:
 		store alien_8, r4
+		
+		load r3, atirador_3
+		loadn r1, #8
+		cmp r3, r1
+		jgr cont_alien_8
+		
+		load r1, alien_3
+		cmp r1, r2
+		jeq set_alien3_atirador
+		
+		cont_alien_8:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_7:
 		store alien_7, r4
+		
+		load r3, atirador_2
+		loadn r1, #7
+		cmp r3, r1
+		jgr cont_alien_7
+		
+		load r1, alien_2
+		cmp r1, r2
+		jeq set_alien2_atirador
+		
+		cont_alien_7:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_6:
 		store alien_6, r4
+		
+		load r3, atirador_1
+		loadn r1, #6
+		cmp r3, r1
+		jgr cont_alien_6
+		
+		load r1, alien_1
+		cmp r1, r2
+		jeq set_alien1_atirador
+		
+		cont_alien_6:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_5:
 		store alien_5, r4
+		
+		load r3, atirador_0
+		loadn r1, #5
+		cmp r3, r1
+		jgr cont_alien_5
+		
+		load r1, alien_0
+		cmp r1, r2
+		jeq set_alien0_atirador
+		
+		cont_alien_5:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+
 	rem_alien_4:
 		store alien_4, r4
+		
+		load r3, atirador_4
+		loadn r1, #4
+		cmp r3, r1
+		jgr cont_alien_4
+		
+		loadn r1, #'@'
+		store atirador_4, r1
+		
+		cont_alien_4:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_3:
 		store alien_3, r4
+		
+		load r3, atirador_3
+		loadn r1, #3
+		cmp r3, r1
+		jgr cont_alien_3
+		
+		loadn r1, #'@'
+		store atirador_3, r1
+		
+		cont_alien_3:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_2:
 		store alien_2, r4
+		
+		load r3, atirador_2
+		loadn r1, #2
+		cmp r3, r1
+		jgr cont_alien_2
+		
+		loadn r1, #'@'
+		store atirador_2, r1
+		
+		cont_alien_2:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_1:
 		store alien_1, r4
+		
+		load r3, atirador_1
+		loadn r1, #1
+		cmp r3, r1
+		jgr cont_alien_1
+		
+		loadn r1, #'@'
+		store atirador_1, r1
+		
+		cont_alien_1:
 		call att_pos_novo_tiro
 		jmp fim_colisoes
+		
 	rem_alien_0:
 		store alien_0, r4
+		
+		load r3, atirador_0
+		loadn r1, #0
+		cmp r3, r1
+		jgr cont_alien_0
+		
+		loadn r1, #'@'
+		store atirador_0, r1
+		
+		cont_alien_0:
 		call att_pos_novo_tiro
+
 fim_colisoes:
 	pop r4
 	pop r3
@@ -2072,6 +2516,206 @@ apagar_tiro:
 	pop r2
 	pop r1
 	pop r0
+	rts
+	
+set_alien0_atirador:
+	push r0
+	
+	loadn r0, #0
+	store atirador_0, r0
+	
+	pop r0
+	
+	rts
+
+set_alien1_atirador:
+	push r0
+	
+	loadn r0, #1
+	store atirador_1, r0
+	
+	pop r0
+	
+	rts
+
+set_alien2_atirador:
+	push r0
+	
+	loadn r0, #2
+	store atirador_2, r0
+	
+	pop r0
+	
+	rts
+
+set_alien3_atirador:
+	push r0
+	
+	loadn r0, #3
+	store atirador_3, r0
+	
+	pop r0
+	
+	rts
+
+set_alien4_atirador:
+	push r0
+	
+	loadn r0, #4
+	store atirador_4, r0
+	
+	pop r0
+	
+	rts
+
+set_alien5_atirador:
+	push r0
+	
+	loadn r0, #5
+	store atirador_0, r0
+	
+	pop r0
+	
+	rts
+
+set_alien6_atirador:
+	push r0
+	
+	loadn r0, #6
+	store atirador_1, r0
+	
+	pop r0
+	
+	rts
+
+set_alien7_atirador:
+	push r0
+	
+	loadn r0, #7
+	store atirador_2, r0
+	
+	pop r0
+	
+	rts
+
+set_alien8_atirador:
+	push r0
+	
+	loadn r0, #8
+	store atirador_3, r0
+	
+	pop r0
+	
+	rts
+
+set_alien9_atirador:
+	push r0
+	
+	loadn r0, #9
+	store atirador_4, r0
+	
+	pop r0
+	
+	rts
+
+set_alien10_atirador:
+	push r0
+	
+	loadn r0, #10
+	store atirador_0, r0
+	
+	pop r0
+	
+	rts
+
+set_alien11_atirador:
+	push r0
+	
+	loadn r0, #11
+	store atirador_1, r0
+	
+	pop r0
+	
+	rts
+
+set_alien12_atirador:
+	push r0
+	
+	loadn r0, #12
+	store atirador_2, r0
+	
+	pop r0
+	
+	rts
+
+set_alien13_atirador:
+	push r0
+	
+	loadn r0, #13
+	store atirador_3, r0
+	
+	pop r0
+	
+	rts
+
+set_alien14_atirador:
+	push r0
+	
+	loadn r0, #14
+	store atirador_4, r0
+	
+	pop r0
+	
+	rts
+
+set_alien15_atirador:
+	push r0
+	
+	loadn r0, #15
+	store atirador_0, r0
+	
+	pop r0
+	
+	rts
+
+set_alien16_atirador:
+	push r0
+	
+	loadn r0, #16
+	store atirador_1, r0
+	
+	pop r0
+	
+	rts
+
+set_alien17_atirador:
+	push r0
+	
+	loadn r0, #17
+	store atirador_2, r0
+	
+	pop r0
+	
+	rts
+
+set_alien18_atirador:
+	push r0
+	
+	loadn r0, #18
+	store atirador_3, r0
+	
+	pop r0
+	
+	rts
+
+set_alien19_atirador:
+	push r0
+	
+	loadn r0, #19
+	store atirador_4, r0
+	
+	pop r0
+	
 	rts
 
 gameover:
