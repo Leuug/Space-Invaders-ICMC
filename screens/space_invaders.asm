@@ -564,17 +564,17 @@ space_invaders : var #1200
   static space_invaders + #535, #3967
   static space_invaders + #536, #3967
   static space_invaders + #537, #3967
-  static space_invaders + #538, #3967
-  static space_invaders + #539, #3967
-  static space_invaders + #540, #3967
+  static space_invaders + #538, #23
+  static space_invaders + #539, #24
+  static space_invaders + #540, #25
   static space_invaders + #541, #3967
   static space_invaders + #542, #3967
   static space_invaders + #543, #3967
   static space_invaders + #544, #3967
   static space_invaders + #545, #3967
-  static space_invaders + #546, #3967
-  static space_invaders + #547, #3967
-  static space_invaders + #548, #3967
+  static space_invaders + #546, #97
+  static space_invaders + #547, #98
+  static space_invaders + #548, #99
   static space_invaders + #549, #3967
   static space_invaders + #550, #3967
   static space_invaders + #551, #3967
@@ -606,17 +606,17 @@ space_invaders : var #1200
   static space_invaders + #575, #3967
   static space_invaders + #576, #3967
   static space_invaders + #577, #3967
-  static space_invaders + #578, #3967
-  static space_invaders + #579, #3967
-  static space_invaders + #580, #3967
+  static space_invaders + #578, #26
+  static space_invaders + #579, #27
+  static space_invaders + #580, #28
   static space_invaders + #581, #3967
   static space_invaders + #582, #3967
   static space_invaders + #583, #3967
   static space_invaders + #584, #3967
   static space_invaders + #585, #3967
-  static space_invaders + #586, #3967
-  static space_invaders + #587, #3967
-  static space_invaders + #588, #3967
+  static space_invaders + #586, #100
+  static space_invaders + #587, #101
+  static space_invaders + #588, #102
   static space_invaders + #589, #3967
   static space_invaders + #590, #3967
   static space_invaders + #591, #3967
@@ -650,7 +650,7 @@ space_invaders : var #1200
   static space_invaders + #617, #3967
   static space_invaders + #618, #3967
   static space_invaders + #619, #3967
-  static space_invaders + #620, #3967
+  static space_invaders + #620, #127
   static space_invaders + #621, #3967
   static space_invaders + #622, #3967
   static space_invaders + #623, #3967
