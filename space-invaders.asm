@@ -159,6 +159,11 @@ alien_22 : var #1
 alien_23 : var #1
 alien_24 : var #1
 
+atirador_0 : var #1
+atirador_1 : var #1
+atirador_2 : var #1
+atirador_3 : var #1
+
 ;---- Inicio do Programa Principal -----
 
 main:
@@ -676,7 +681,7 @@ setup_alien_row:
 
 		verify_24:
 			load r0, alien_24
-
+			
 		fim_verify_4:
 
 		push r1
@@ -881,34 +886,44 @@ alien_update:
 	pop r0
 
 	rts
-
 main_game:
 	push r0
 	push r1
 	push r2
 	push r3
 	push r4
+	push r5
+	push r6
 
+	;setando a posicao inicial do tanque
 	loadn r1, #1059
 	store tanquePosition, r1
 
+	;setando a posicao inicial do primeiro tiro
 	loadn r2, #0
 	loadn r0, #1019
 	store tiroPosition, r0
-	; r0: Posicao na tela onde a mensagem sera' escrita
-	; r1: Carrega r1 com o endereco do vetor que contem a mensagem
-	; r2: Seleciona a COr da Mensagem
+	
+	;printando score
 	loadn r0, #1160
 	loadn r1, #m_score
 	load r2, amarelo
 	call Imprimestr
 
+	;setando a direcao do movimento e a posicao inicial dos aliens
 	loadn r0, #0
 	store alien_mov_esq, r0
 	store alienPosition, r0
 
+	; setando os alien do front como atiradores
+	loadn r3, #21
+	loadn r4, #22
+	loadn r5, #23
+	loadn r6, #24
+
 	;; ------- setando valores dos alien para verdadeiro -------
 	loadn r3, #1
+	loadn r4, #0
 
 	store alien_0, r3
 	store alien_1, r3
@@ -937,23 +952,25 @@ main_game:
 	store alien_24, r3
 	;; ---------------------------------------------------------
 
+	
 	call setup_alien_row
 
 main_game_loop:
-	call alien_update
-	loadn r2, #1
+	loadn r2, #0
 	load r0, tiroPosition
 	cmp r2, r0
 	jle nao_att_tiro
-	loadn r0, #40
-	load r1, tanquePosition
-	sub r1, r1, r0
-	store tiroPosition, r1
+	call att_pos_novo_tiro
+	
 nao_att_tiro:
-
 	call print_tiro
 	call player
 	call apagar_tiro
+	;colisao
+	call colisoes_alien
+
+fim_rem_alien:
+	call alien_update
 	jmp main_game_loop
 
 	pop r4
@@ -961,15 +978,1081 @@ nao_att_tiro:
 	pop r2
 	pop r1
 	pop r0
+	
+	rts
+
+colisoes_alien:
+	push r0
+	push r1
+	push r2
+	push r3
+	push r4
+	
+	loadn r4, #0
+
+	load r0, tiroPosition
+	loadn r2, #40
+	sub r0, r0, r2
+	;*************************verificando os aliens da linha 4*************************
+	
+	;-----------------------verificando alien 20-----------------------
+	;verificando se esta removido
+	load r3, alien_20
+	cmp r3, r4
+	jeq verify_colis_alien_21
+	
+	load r1, alien_pos_4
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_20
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_20
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_20
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_20
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_20
+	
+;-----------------------verificando alien 21-----------------------
+verify_colis_alien_21:
+	;verificando se esta removido
+	load r3, alien_21
+	cmp r3, r4
+	jeq verify_colis_alien_22
+
+	load r1, alien_pos_4
+	loadn r2, #8
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_21
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_21
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_21
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_21
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_21
+	
+;-----------------------verificando alien 22-----------------------
+verify_colis_alien_22:
+	;verificando se esta removido
+	load r3, alien_22
+	cmp r3, r4
+	jeq verify_colis_alien_23
+
+	load r1, alien_pos_4
+	loadn r2, #16
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_22
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_22
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_22
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_22
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_22
+	
+;-----------------------verificando alien 23-----------------------
+verify_colis_alien_23:
+	;verificando se esta removido
+	load r3, alien_23
+	cmp r3, r4
+	jeq verify_colis_alien_24
+
+	load r1, alien_pos_4
+	loadn r2, #24
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_23
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_23
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_23
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_23
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_23
+	
+;-----------------------verificando alien 24-----------------------
+verify_colis_alien_24:
+	;verificando se esta removido
+	load r3, alien_24
+	cmp r3, r4
+	jeq verify_colis_alien_15
+
+	load r1, alien_pos_4
+	loadn r2, #32
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_24
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_24
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_24
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_24
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_24
+	
+;*************************verificando os aliens da linha 3*************************
+	
+	;-----------------------verificando alien 15-----------------------
+verify_colis_alien_15:
+	;verificando se esta removido
+	load r3, alien_15
+	cmp r3, r4
+	jeq verify_colis_alien_16
+	
+	load r1, alien_pos_3
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_15
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_15
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_15
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_15
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_15
+	
+;-----------------------verificando alien 16-----------------------
+verify_colis_alien_16:
+	;verificando se esta removido
+	load r3, alien_16
+	cmp r3, r4
+	jeq verify_colis_alien_17
+
+	load r1, alien_pos_3
+	loadn r2, #8
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_16
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_16
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_16
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_16
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_16
+	
+;-----------------------verificando alien 17-----------------------
+verify_colis_alien_17:
+	;verificando se esta removido
+	load r3, alien_17
+	cmp r3, r4
+	jeq verify_colis_alien_18
+
+	load r1, alien_pos_3
+	loadn r2, #16
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_17
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_17
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_17
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_17
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_17
+	
+;-----------------------verificando alien 18-----------------------
+verify_colis_alien_18:
+	;verificando se esta removido
+	load r3, alien_18
+	cmp r3, r4
+	jeq verify_colis_alien_19
+
+	load r1, alien_pos_3
+	loadn r2, #24
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_18
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_18
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_18
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_18
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_18
+	
+;-----------------------verificando alien 19-----------------------
+verify_colis_alien_19:
+	;verificando se esta removido
+	load r3, alien_19
+	cmp r3, r4
+	jeq verify_colis_alien_10
+
+	load r1, alien_pos_3
+	loadn r2, #32
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_19
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_19
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_19
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_19
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_19
+	
+;*************************verificando os aliens da linha 2*************************
+	
+	;-----------------------verificando alien 10-----------------------
+verify_colis_alien_10:
+	;verificando se esta removido
+	load r3, alien_10
+	cmp r3, r4
+	jeq verify_colis_alien_11
+	
+	load r1, alien_pos_2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_10
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_10
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_10
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_10
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_10
+	
+;-----------------------verificando alien 11-----------------------
+verify_colis_alien_11:
+	;verificando se esta removido
+	load r3, alien_11
+	cmp r3, r4
+	jeq verify_colis_alien_12
+
+	load r1, alien_pos_2
+	loadn r2, #8
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_11
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_11
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_11
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_11
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_11
+	
+;-----------------------verificando alien 12-----------------------
+verify_colis_alien_12:
+	;verificando se esta removido
+	load r3, alien_12
+	cmp r3, r4
+	jeq verify_colis_alien_13
+
+	load r1, alien_pos_2
+	loadn r2, #16
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_12
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_12
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_12
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_12
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_12
+	
+;-----------------------verificando alien 13-----------------------
+verify_colis_alien_13:
+	;verificando se esta removido
+	load r3, alien_13
+	cmp r3, r4
+	jeq verify_colis_alien_14
+
+	load r1, alien_pos_2
+	loadn r2, #24
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_13
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_13
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_13
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_13
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_13
+	
+;-----------------------verificando alien 14-----------------------
+verify_colis_alien_14:
+	;verificando se esta removido
+	load r3, alien_14
+	cmp r3, r4
+	jeq verify_colis_alien_5
+
+	load r1, alien_pos_2
+	loadn r2, #32
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_14
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_14
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_14
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_14
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_14
+	
+;*************************verificando os aliens da linha 1*************************
+	
+	;-----------------------verificando alien 5-----------------------
+verify_colis_alien_5:
+	;verificando se esta removido
+	load r3, alien_5
+	cmp r3, r4
+	jeq verify_colis_alien_6
+	
+	load r1, alien_pos_1
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_5
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_5
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_5
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_5
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_5
+	
+;-----------------------verificando alien 6-----------------------
+verify_colis_alien_6:
+	;verificando se esta removido
+	load r3, alien_6
+	cmp r3, r4
+	jeq verify_colis_alien_7
+
+	load r1, alien_pos_1
+	loadn r2, #8
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_6
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_6
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_6
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_6
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_6
+	
+;-----------------------verificando alien 7-----------------------
+verify_colis_alien_7:
+	;verificando se esta removido
+	load r3, alien_7
+	cmp r3, r4
+	jeq verify_colis_alien_8
+
+	load r1, alien_pos_1
+	loadn r2, #16
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_7
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_7
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_7
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_7
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_7
+	
+;-----------------------verificando alien 8-----------------------
+verify_colis_alien_8:
+	;verificando se esta removido
+	load r3, alien_8
+	cmp r3, r4
+	jeq verify_colis_alien_9
+
+	load r1, alien_pos_1
+	loadn r2, #24
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_8
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_8
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_8
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_8
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_8
+	
+;-----------------------verificando alien 9-----------------------
+verify_colis_alien_9:
+	;verificando se esta removido
+	load r3, alien_9
+	cmp r3, r4
+	jeq verify_colis_alien_0
+
+	load r1, alien_pos_1
+	loadn r2, #32
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_9
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_9
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_9
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_9
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_9
+	
+;*************************verificando os aliens da linha 0*************************
+	
+	;-----------------------verificando alien 0-----------------------
+verify_colis_alien_0:
+	;verificando se esta removido
+	load r3, alien_0
+	cmp r3, r4
+	jeq verify_colis_alien_1
+	
+	load r1, alien_pos_0
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_0
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_0
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_0
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_0
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_0
+	
+;-----------------------verificando alien 1-----------------------
+verify_colis_alien_1:
+	;verificando se esta removido
+	load r3, alien_1
+	cmp r3, r4
+	jeq verify_colis_alien_2
+
+	load r1, alien_pos_0
+	loadn r2, #8
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_1
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_1
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_1
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_1
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_1
+	
+;-----------------------verificando alien 2-----------------------
+verify_colis_alien_2:
+	;verificando se esta removido
+	load r3, alien_2
+	cmp r3, r4
+	jeq verify_colis_alien_3
+
+	load r1, alien_pos_0
+	loadn r2, #16
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_2
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_2
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_2
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_2
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_2
+	
+;-----------------------verificando alien 3-----------------------
+verify_colis_alien_3:
+	;verificando se esta removido
+	load r3, alien_3
+	cmp r3, r4
+	jeq verify_colis_alien_4
+
+	load r1, alien_pos_0
+	loadn r2, #24
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_3
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_3
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_3
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_3
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_3
+	
+;-----------------------verificando alien 4-----------------------
+verify_colis_alien_4:
+	;verificando se esta removido
+	load r3, alien_4
+	cmp r3, r4
+	jeq fim_colisoes
+
+	load r1, alien_pos_0
+	loadn r2, #32
+	add r1, r1, r2
+	
+	;verificando se houve colisao com a parte superior esquerda
+	cmp r0, r1
+	jeq rem_alien_4
+	
+	;verificando se houve colisao com a parte superior direita
+	inc r1
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_4
+	
+	;verificando se houve colisao com a parte inferior esquerda
+	loadn r2, #38
+	add r1, r1, r2
+	cmp r0, r1
+	jeq rem_alien_4
+	
+	;verificando se houve colisao com a parte do meio inferior
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_4
+	
+	;verificando se houve colisao com a parte inferior direita
+	inc r1
+	cmp r0, r1
+	jeq rem_alien_4
+	jmp fim_colisoes
+	
+	rem_alien_24:
+		store alien_24, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+		
+	rem_alien_23:
+		store alien_23, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+		
+	rem_alien_22:
+		store alien_22, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_21:
+		store alien_21, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_20:
+		store alien_20, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_19:
+		store alien_19, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_18:
+		store alien_18, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_17:
+		store alien_17, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_16:
+		store alien_16, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_15:
+		store alien_15, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_14:
+		store alien_14, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_13:
+		store alien_13, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_12:
+		store alien_12, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_11:
+		store alien_11, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_10:
+		store alien_10, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_9:
+		store alien_9, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_8:
+		store alien_8, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_7:
+		store alien_7, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_6:
+		store alien_6, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_5:
+		store alien_5, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_4:
+		store alien_4, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_3:
+		store alien_3, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_2:
+		store alien_2, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_1:
+		store alien_1, r4
+		call att_pos_novo_tiro
+		jmp fim_colisoes
+	rem_alien_0:
+		store alien_0, r4
+		call att_pos_novo_tiro
+fim_colisoes:
+	pop r4
+	pop r3
+	pop r2
+	pop r1
+	pop r0
+	rts
+
+att_pos_novo_tiro:
+	push r0
+	push r1
+	
+	loadn r0, #40
+	load r1, tanquePosition
+	sub r1, r1, r0
+	store tiroPosition, r1
+	
+	pop r1
+	pop r0
+	rts	
 
 print_tiro:
 	push r0
 	push r1
+	push r2
 
 	load r0, tiroPosition
 	loadn r1, #9
+	load r2, vermelho
+	add r1, r1, r2
+	
 	outchar r1, r0
 
+	pop r2
 	pop r1
 	pop r0
 	rts
