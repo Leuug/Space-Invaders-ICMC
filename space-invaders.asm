@@ -871,7 +871,6 @@ main_game:
 
 	;; ------- setando valores dos alien para verdadeiro -------
 	loadn r3, #1
-	loadn r4, #0
 
 	store alien_0, r3
 	store alien_1, r3
