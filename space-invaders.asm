@@ -33,10 +33,10 @@ input_1 : var #1
 score : var #1
 cor : var #1
 
-startmenu : string "Aperte Enter para comecar!"
-gameover_str : string "Gameover"
-jogarnovamente : string "Deseja jogar novamente?"
-confirmacao : string "s/n"
+startmenu : string "APERTE ENTRE PARA COMECAR!"
+gameover_str : string "GAME OVER!"
+jogarnovamente : string "DESEJA JOGAR NOVAMENTE?"
+confirmacao : string "S/N"
 m_score : string "SCORE "
 
 tiroPosition : var #4
@@ -60,6 +60,40 @@ alien1Gaps : var #6
 	static alien1Gaps + #3, #37
 	static alien1Gaps + #4, #0
 	static alien1Gaps + #5, #0
+
+alien2 : var #6
+  static alien2 + #0, #23 ;   alien2_upl
+  static alien2 + #1, #24 ;   alien2_cntr
+  static alien2 + #2, #25 ;   alien2_upr
+  ;38  espacos para o proximo caractere
+  static alien2 + #3, #26 ;   alien2_dwnl
+  static alien2 + #4, #27 ;   alien2_bttm
+  static alien2 + #5, #28 ;   alien2_dwnr
+
+alien2Gaps : var #6
+  static alien2Gaps + #0, #0
+  static alien2Gaps + #1, #0
+  static alien2Gaps + #2, #0
+  static alien2Gaps + #3, #37
+  static alien2Gaps + #4, #0
+  static alien2Gaps + #5, #0
+
+alien3 : var #6
+  static alien3 + #0, #97 ;   alien3_upl
+  static alien3 + #1, #98 ;   alien3_cntr
+  static alien3 + #2, #99 ;   alien3_upr
+  ;38  espacos para o proximo caractere
+  static alien3 + #3, #100 ;   alien3_dwnl
+  static alien3 + #4, #101 ;   alien3_bttm
+  static alien3 + #5, #102 ;   alien3_dwnr
+
+alien3Gaps : var #6
+  static alien3Gaps + #0, #0
+  static alien3Gaps + #1, #0
+  static alien3Gaps + #2, #0
+  static alien3Gaps + #3, #37
+  static alien3Gaps + #4, #0
+  static alien3Gaps + #5, #0
 
 tanquePosition : var #1
 
@@ -251,8 +285,8 @@ setup_alien_row:
 	loadn r5, #5 ; quantidade de alien por coluna
 	loadn r6, #0 ; primeiro gap entre alien / parede esquerda
 
-	loadn r0, #alien1
-	loadn r1, #alien1Gaps
+	loadn r0, #alien3
+	loadn r1, #alien3Gaps
 	load r2, alienPosition
 	loadn r3, #6
 	load r7, branco
@@ -335,6 +369,8 @@ setup_alien_row:
 
 		jne imprime_alien_0
 
+	loadn r0, #alien2
+	loadn r1, #alien2Gaps
 	loadn r4, #0 ; contador de aliens
 	loadn r6, #127
 	add r2, r2, r6
@@ -501,6 +537,8 @@ setup_alien_row:
 
 		jne imprime_alien_2
 
+	loadn r0, #alien1
+	loadn r1, #alien1Gaps
 	loadn r4, #0 ; contador de aliens
 	loadn r6, #127
 	add r2, r2, r6
