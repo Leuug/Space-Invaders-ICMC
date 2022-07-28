@@ -1,5 +1,3 @@
-; Hello World - Escreve mensagem armazenada na memoria na tela
-
 jmp main
 
 ; ------- DEFINIÇÃO DE COrES -------
@@ -39,8 +37,12 @@ startmenu : string "Aperte Enter para comecar!"
 gameover_str : string "Gameover"
 jogarnovamente : string "Deseja jogar novamente?"
 confirmacao : string "s/n"
+m_score : string "SCORE "
 
-alien1Position : var #1
+tiroPosition : var #4
+contador_tiro : var #1
+alienPosition: var #1
+alien_mov_esq : var #1
 
 alien1 : var #6
 	static alien1 + #0, #14 ; alien1_upl
@@ -89,12 +91,43 @@ tanqueGaps : var #11
 	static tanqueGaps + #9, #0
 	static tanqueGaps + #10, #0
 
-position : var #1
+;; posição inicial de cada linha de aliens
+alien_pos_0 : var #1
+alien_pos_1 : var #1
+alien_pos_2 : var #1
+alien_pos_3 : var #1
+alien_pos_4 : var #1
+
+;; flags para verificar se alien devem ser impressos
+alien_0 : var #1
+alien_1 : var #1
+alien_2 : var #1
+alien_3 : var #1
+alien_4 : var #1
+alien_5 : var #1
+alien_6 : var #1
+alien_7 : var #1
+alien_8 : var #1
+alien_9 : var #1
+alien_10 : var #1
+alien_11 : var #1
+alien_12 : var #1
+alien_13 : var #1
+alien_14 : var #1
+alien_15 : var #1
+alien_16 : var #1
+alien_17 : var #1
+alien_18 : var #1
+alien_19 : var #1
+alien_20 : var #1
+alien_21 : var #1
+alien_22 : var #1
+alien_23 : var #1
+alien_24 : var #1
+
 ;---- Inicio do Programa Principal -----
 
 main:
-	loadn r0, #0
-	store score, r0
 
 menu_main:
 	jmp menu
@@ -124,9 +157,9 @@ player:
 	push r7
 
 	; printando tanque
-	load r2, tanquePosition
 	loadn r0, #tanque
 	loadn r1, #tanqueGaps
+	load r2, tanquePosition
 	loadn r3, #11
 	load r7, branco
 	call printChar
@@ -148,37 +181,46 @@ player:
 	loadn r3, #'a' ; esquerda
 	cmp r2, r3
 	jeq esquerda
+
 	; verifica input
 	load r2, input_1
 	loadn r3, #'d' ; direita
 	cmp r2, r3
 	jeq direita
+
 	jmp fim
 
 	esquerda:
 		cmp r1, r5
 		jeq fim
+
 		push r1
-		load r2, tanquePosition
+
 		loadn r1, #tanqueGaps
+		load r2, tanquePosition
 		loadn r3, #11
-		load r7, verde
 		call apagarChar
+
 		pop r1
+
 		sub r1, r1, r4
 		store tanquePosition, r1
+
 		jmp fim
 
 	direita:
 		cmp r1, r6
 		jeq fim
+
 		push r1
+
 		load r2, tanquePosition
 		loadn r1, #tanqueGaps
 		loadn r3, #11
-		load r7, verde
 		call apagarChar
+
 		pop r1
+
 		add r1, r1, r4
 		store tanquePosition, r1
 
@@ -192,18 +234,725 @@ player:
 	pop r2
 	pop r1
 	pop r0
+
+	rts
+
+setup_alien_row:
+	push r0
+	push r1
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+
+	loadn r4, #0 ; contador de aliens
+	loadn r5, #5 ; quantidade de alien por coluna
+	loadn r6, #0 ; primeiro gap entre alien / parede esquerda
+
+	loadn r0, #alien1
+	loadn r1, #alien1Gaps
+	load r2, alienPosition
+	loadn r3, #6
+	load r7, branco
+
+	store alien_pos_0, r2
+
+	imprime_alien_0:
+		add r2, r2, r6
+
+		push r0
+
+		;; verificando em qual iteração do loop estamos
+		loadn r0, #0
+		cmp r0, r4
+		jeq verify_0
+
+		loadn r0, #1
+		cmp r0, r4
+		jeq verify_1
+
+		loadn r0, #2
+		cmp r0, r4
+		jeq verify_2
+
+		loadn r0, #3
+		cmp r0, r4
+		jeq verify_3
+
+		loadn r0, #4
+		cmp r0, r4
+		jeq verify_4
+
+		jmp fim_verify_0
+
+		;; verificando se alien existe
+		verify_0:
+			load r0, alien_0
+			jmp fim_verify_0
+
+		verify_1:
+			load r0, alien_1
+			jmp fim_verify_0
+
+		verify_2:
+			load r0, alien_2
+			jmp fim_verify_0
+
+		verify_3:
+			load r0, alien_3
+			jmp fim_verify_0
+
+		verify_4:
+			load r0, alien_4
+
+		fim_verify_0:
+
+		push r1
+
+		loadn r1, #0
+		cmp r1, r0 ; alien == 0?
+		pop r1
+		pop r0
+		jeq not_print_0 ; se sim, não printar
+
+		call printChar
+		jmp continue_0
+
+		not_print_0:
+		loadn r6, #43
+		add r2, r2, r6
+
+		continue_0:
+
+		inc r4
+		cmp r4, r5
+
+		loadn r6, #42
+		sub r2, r2, r6
+		loadn r6, #7
+
+		jne imprime_alien_0
+
+	loadn r4, #0 ; contador de aliens
+	loadn r6, #127
+	add r2, r2, r6
+	loadn r6, #0
+
+	store alien_pos_1, r2
+
+	imprime_alien_1:
+		add r2, r2, r6
+
+		push r0
+
+		;; verificando em qual iteração do loop estamos
+		loadn r0, #0
+		cmp r0, r4
+		jeq verify_5
+
+		loadn r0, #1
+		cmp r0, r4
+		jeq verify_6
+
+		loadn r0, #2
+		cmp r0, r4
+		jeq verify_7
+
+		loadn r0, #3
+		cmp r0, r4
+		jeq verify_8
+
+		loadn r0, #4
+		cmp r0, r4
+		jeq verify_9
+
+		jmp fim_verify_1
+
+		;; verificando se alien existe
+		verify_5:
+			load r0, alien_5
+			jmp fim_verify_1
+
+		verify_6:
+			load r0, alien_6
+			jmp fim_verify_1
+
+		verify_7:
+			load r0, alien_7
+			jmp fim_verify_1
+
+		verify_8:
+			load r0, alien_8
+			jmp fim_verify_1
+
+		verify_9:
+			load r0, alien_9
+
+		fim_verify_1:
+
+		push r1
+
+		loadn r1, #0
+		cmp r1, r0 ; alien == 0?
+		pop r1
+		pop r0
+		jeq not_print_1 ; se sim, não printar
+
+		call printChar
+		jmp continue_1
+
+		not_print_1:
+		loadn r6, #43
+		add r2, r2, r6
+
+		continue_1:
+
+		inc r4
+		cmp r4, r5
+
+		loadn r6, #42
+		sub r2, r2, r6
+		loadn r6, #7
+
+		jne imprime_alien_1
+
+	loadn r4, #0 ; contador de aliens
+	loadn r6, #127
+	add r2, r2, r6
+	loadn r6, #0
+
+	store alien_pos_2, r2
+
+	imprime_alien_2:
+		add r2, r2, r6
+
+		push r0
+
+		;; verificando em qual iteração do loop estamos
+		loadn r0, #0
+		cmp r0, r4
+		jeq verify_10
+
+		loadn r0, #1
+		cmp r0, r4
+		jeq verify_11
+
+		loadn r0, #2
+		cmp r0, r4
+		jeq verify_12
+
+		loadn r0, #3
+		cmp r0, r4
+		jeq verify_13
+
+		loadn r0, #4
+		cmp r0, r4
+		jeq verify_14
+
+		jmp fim_verify_2
+
+		;; verificando se alien existe
+		verify_10:
+			load r0, alien_10
+			jmp fim_verify_2
+
+		verify_11:
+			load r0, alien_11
+			jmp fim_verify_2
+
+		verify_12:
+			load r0, alien_12
+			jmp fim_verify_2
+
+		verify_13:
+			load r0, alien_13
+			jmp fim_verify_2
+
+		verify_14:
+			load r0, alien_14
+
+		fim_verify_2:
+
+		push r1
+
+		loadn r1, #0
+		cmp r1, r0 ; alien == 0?
+		pop r1
+		pop r0
+		jeq not_print_2 ; se sim, não printar
+
+		call printChar
+		jmp continue_2
+
+		not_print_2:
+		loadn r6, #43
+		add r2, r2, r6
+
+		continue_2:
+
+		inc r4
+		cmp r4, r5
+
+		loadn r6, #42
+		sub r2, r2, r6
+		loadn r6, #7
+
+		jne imprime_alien_2
+
+	loadn r4, #0 ; contador de aliens
+	loadn r6, #127
+	add r2, r2, r6
+	loadn r6, #0
+
+	store alien_pos_3, r2
+
+	imprime_alien_3:
+		add r2, r2, r6
+
+		push r0
+
+		;; verificando em qual iteração do loop estamos
+		loadn r0, #0
+		cmp r0, r4
+		jeq verify_15
+
+		loadn r0, #1
+		cmp r0, r4
+		jeq verify_16
+
+		loadn r0, #2
+		cmp r0, r4
+		jeq verify_17
+
+		loadn r0, #3
+		cmp r0, r4
+		jeq verify_18
+
+		loadn r0, #4
+		cmp r0, r4
+		jeq verify_19
+
+		jmp fim_verify_3
+
+		;; verificando se alien existe
+		verify_15:
+			load r0, alien_15
+			jmp fim_verify_3
+
+		verify_16:
+			load r0, alien_16
+			jmp fim_verify_3
+
+		verify_17:
+			load r0, alien_17
+			jmp fim_verify_3
+
+		verify_18:
+			load r0, alien_18
+			jmp fim_verify_3
+
+		verify_19:
+			load r0, alien_19
+
+		fim_verify_3:
+
+		push r1
+
+		loadn r1, #0
+		cmp r1, r0 ; alien == 0?
+		pop r1
+		pop r0
+		jeq not_print_3 ; se sim, não printar
+
+		call printChar
+		jmp continue_3
+
+		not_print_3:
+		loadn r6, #43
+		add r2, r2, r6
+
+		continue_3:
+
+		inc r4
+		cmp r4, r5
+
+		loadn r6, #42
+		sub r2, r2, r6
+		loadn r6, #7
+
+		jne imprime_alien_3
+
+	loadn r4, #0 ; contador de aliens
+	loadn r6, #127
+	add r2, r2, r6
+	loadn r6, #0
+
+	store alien_pos_4, r2
+
+	imprime_alien_4:
+		add r2, r2, r6
+
+		push r0
+
+		;; verificando em qual iteração do loop estamos
+		loadn r0, #0
+		cmp r0, r4
+		jeq verify_20
+
+		loadn r0, #1
+		cmp r0, r4
+		jeq verify_21
+
+		loadn r0, #2
+		cmp r0, r4
+		jeq verify_22
+
+		loadn r0, #3
+		cmp r0, r4
+		jeq verify_23
+
+		loadn r0, #4
+		cmp r0, r4
+		jeq verify_24
+
+		jmp fim_verify_4
+
+		;; verificando se alien existe
+		verify_20:
+			load r0, alien_20
+			jmp fim_verify_4
+
+		verify_21:
+			load r0, alien_21
+			jmp fim_verify_4
+
+		verify_22:
+			load r0, alien_22
+			jmp fim_verify_4
+
+		verify_23:
+			load r0, alien_23
+			jmp fim_verify_4
+
+		verify_24:
+			load r0, alien_24
+
+		fim_verify_4:
+
+		push r1
+
+		loadn r1, #0
+		cmp r1, r0 ; alien == 0?
+		pop r1
+		pop r0
+		jeq not_print_4 ; se sim, não printar
+
+		call printChar
+		jmp continue_4
+
+		not_print_4:
+		loadn r6, #43
+		add r2, r2, r6
+
+		continue_4:
+
+		inc r4
+		cmp r4, r5
+
+		loadn r6, #42
+		sub r2, r2, r6
+		loadn r6, #7
+
+		jne imprime_alien_4
+
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r1
+	pop r0
+	rts
+
+erase_alien_row:
+	push r1
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+
+	loadn r4, #0 ; contador de aliens
+	loadn r5, #1 ; incrementador
+	loadn r6, #0 ; primeiro gap entre alien / parede esquerda
+
+	loadn r1, #alien1Gaps
+	load r2, alienPosition
+	loadn r3, #6
+
+	erase_alien_0:
+		add r2, r2, r6
+		call apagarChar
+
+		add r4, r4, r5
+		loadn r6, #5
+		cmp r4, r6
+
+		loadn r6, #42
+		sub r2, r2, r6
+		loadn r6, #7
+		jne erase_alien_0
+
+	loadn r4, #0 ; contador de aliens
+	loadn r5, #1 ; incrementador
+	loadn r6, #125
+	add r2, r2, r6
+	loadn r6, #2
+
+	erase_alien_1:
+		add r2, r2, r6
+		call apagarChar
+
+		add r4, r4, r5
+		loadn r6, #5
+		cmp r4, r6
+
+		loadn r6, #42
+		sub r2, r2, r6
+		loadn r6, #7
+		jne erase_alien_1
+
+	loadn r4, #0 ; contador de aliens
+	loadn r5, #1 ; incrementador
+	loadn r6, #125
+	add r2, r2, r6
+	loadn r6, #2
+
+	erase_alien_2:
+		add r2, r2, r6
+		call apagarChar
+
+		add r4, r4, r5
+		loadn r6, #5
+		cmp r4, r6
+
+		loadn r6, #42
+		sub r2, r2, r6
+		loadn r6, #7
+		jne erase_alien_2
+
+	loadn r4, #0 ; contador de aliens
+	loadn r5, #1 ; incrementador
+	loadn r6, #125
+	add r2, r2, r6
+	loadn r6, #2
+
+	erase_alien_3:
+		add r2, r2, r6
+		call apagarChar
+
+		add r4, r4, r5
+		loadn r6, #5
+		cmp r4, r6
+
+		loadn r6, #42
+		sub r2, r2, r6
+		loadn r6, #7
+		jne erase_alien_3
+
+	loadn r4, #0 ; contador de aliens
+	loadn r5, #1 ; incrementador
+	loadn r6, #125
+	add r2, r2, r6
+	loadn r6, #2
+
+	erase_alien_4:
+		add r2, r2, r6
+		call apagarChar
+
+		add r4, r4, r5
+		loadn r6, #5
+		cmp r4, r6
+
+		loadn r6, #42
+		sub r2, r2, r6
+		loadn r6, #7
+		jne erase_alien_4
+
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r1
+	rts
+
+alien_update:
+	push r0
+	push r1
+	push r2
+	push r3
+	push r4
+
+	call erase_alien_row
+
+	load r0, alienPosition
+	loadn r1, #1
+
+	loadn r2, #5
+	load r3, alien_mov_esq
+	loadn r4, #0
+
+	cmp r3, r4
+	jne mov_alien_esq
+
+	cmp r0, r2
+	jeq flag_esq
+
+	add r0, r0, r1
+	jmp fim_mov_alien
+
+	mov_alien_esq:
+		cmp r0, r4
+		jeq flag_dir
+		sub r0, r0, r1
+		jmp fim_mov_alien
+
+	flag_esq:
+		store alien_mov_esq, r2
+		sub r0, r0, r1
+		jmp fim_mov_alien
+
+	flag_dir:
+		store alien_mov_esq, r4
+		add r0, r0, r1
+
+	fim_mov_alien:
+
+	store alienPosition, r0
+
+	call setup_alien_row
+
+	pop r4
+	pop r3
+	pop r2
+	pop r1
+	pop r0
+
 	rts
 
 main_game:
+	push r0
 	push r1
+	push r2
+	push r3
+	push r4
+
 	loadn r1, #1059
 	store tanquePosition, r1
 
+	loadn r2, #0
+	loadn r0, #1019
+	store tiroPosition, r0
+	; r0: Posicao na tela onde a mensagem sera' escrita
+	; r1: Carrega r1 com o endereco do vetor que contem a mensagem
+	; r2: Seleciona a COr da Mensagem
+	loadn r0, #1160
+	loadn r1, #m_score
+	load r2, amarelo
+	call Imprimestr
+
+	loadn r0, #0
+	store alien_mov_esq, r0
+	store alienPosition, r0
+
+	;; ------- setando valores dos alien para verdadeiro -------
+	loadn r3, #1
+	loadn r4, #0
+
+	store alien_0, r3
+	store alien_1, r3
+	store alien_2, r3
+	store alien_3, r3
+	store alien_4, r3
+	store alien_5, r3
+	store alien_6, r3
+	store alien_7, r3
+	store alien_8, r3
+	store alien_9, r3
+	store alien_10, r3
+	store alien_11, r3
+	store alien_12, r3
+	store alien_13, r3
+	store alien_14, r3
+	store alien_15, r3
+	store alien_16, r3
+	store alien_17, r3
+	store alien_18, r3
+	store alien_19, r3
+	store alien_20, r3
+	store alien_21, r3
+	store alien_22, r3
+	store alien_23, r3
+	store alien_24, r3
+	;; ---------------------------------------------------------
+
+	call setup_alien_row
+
 main_game_loop:
+	call alien_update
+	loadn r2, #1
+	load r0, tiroPosition
+	cmp r2, r0
+	jle nao_att_tiro
+	loadn r0, #40
+	load r1, tanquePosition
+	sub r1, r1, r0
+	store tiroPosition, r1
+nao_att_tiro:
+
+	call print_tiro
 	call player
+	call apagar_tiro
 	jmp main_game_loop
 
+	pop r4
+	pop r3
+	pop r2
 	pop r1
+	pop r0
+
+print_tiro:
+	push r0
+	push r1
+
+	load r0, tiroPosition
+	loadn r1, #9
+	outchar r1, r0
+
+	pop r1
+	pop r0
+	rts
+
+apagar_tiro:
+	push r0
+	push r1
+	push r2
+
+	load r0, tiroPosition
+	loadn r1, #' '
+	outchar r1, r0
+	loadn r2, #40
+	sub r0, r0, r2
+	store tiroPosition, r0
+
+	pop r2
+	pop r1
+	pop r0
+	rts
 
 gameover:
 	push r0
@@ -454,8 +1203,8 @@ printChar:
     	outchar r5, r2
 
     	inc r2
-     		inc r4
-     		cmp r3, r4
+     	inc r4
+     	cmp r3, r4
     	jne printCharLoop
 
   	pop r6
