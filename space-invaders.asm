@@ -401,7 +401,7 @@ setup_alien_row:
 
 		not_print_0:
 
-		loadn r6, #7
+		loadn r6, #8
 
 		inc r4
 		cmp r4, r5
@@ -410,7 +410,7 @@ setup_alien_row:
 	loadn r0, #alien2
 	loadn r1, #alien2Gaps
 	loadn r4, #0 ; contador de aliens
-	loadn r6, #132
+	loadn r6, #128
 	add r2, r2, r6
 	loadn r6, #0
 
@@ -511,14 +511,14 @@ setup_alien_row:
 
 		not_print_1:
 
-		loadn r6, #7
+		loadn r6, #8
 
 		inc r4
 		cmp r4, r5
 		jne imprime_alien_1
 
 	loadn r4, #0 ; contador de aliens
-	loadn r6, #132
+	loadn r6, #128
 	add r2, r2, r6
 	loadn r6, #0
 
@@ -619,7 +619,7 @@ setup_alien_row:
 
 		not_print_2:
 
-		loadn r6, #7
+		loadn r6, #8
 
 		inc r4
 		cmp r4, r5
@@ -628,7 +628,7 @@ setup_alien_row:
 	loadn r0, #alien1
 	loadn r1, #alien1Gaps
 	loadn r4, #0 ; contador de aliens
-	loadn r6, #132
+	loadn r6, #128
 	add r2, r2, r6
 	loadn r6, #0
 
@@ -729,14 +729,14 @@ setup_alien_row:
 
 		not_print_3:
 
-		loadn r6, #7
+		loadn r6, #8
 
 		inc r4
 		cmp r4, r5
 		jne imprime_alien_3
 
 	loadn r4, #0 ; contador de aliens
-	loadn r6, #132
+	loadn r6, #128
 	add r2, r2, r6
 	loadn r6, #0
 
@@ -837,7 +837,7 @@ setup_alien_row:
 
 		not_print_4:
 
-		loadn r6, #7
+		loadn r6, #8
 
 		inc r4
 		cmp r4, r5
@@ -863,7 +863,7 @@ erase_alien_row:
 	push r6
 
 	loadn r4, #0 ; contador de aliens
-	loadn r5, #1 ; incrementador
+	loadn r5, #5 ; quantidade de alien a serem apagados
 	loadn r6, #0 ; primeiro gap entre alien / parede esquerda
 
 	loadn r1, #alien1Gaps
@@ -874,89 +874,70 @@ erase_alien_row:
 		add r2, r2, r6
 		call apagarChar
 
-		add r4, r4, r5
-		loadn r6, #5
-		cmp r4, r6
+		loadn r6, #8
 
-		loadn r6, #42
-		sub r2, r2, r6
-		loadn r6, #7
+		inc r4
+		cmp r4, r5
 		jne erase_alien_0
 
 	loadn r4, #0 ; contador de aliens
-	loadn r5, #1 ; incrementador
-	loadn r6, #125
+	loadn r6, #128
 	add r2, r2, r6
-	loadn r6, #2
+	loadn r6, #0
 
 	erase_alien_1:
 		add r2, r2, r6
 		call apagarChar
 
-		add r4, r4, r5
-		loadn r6, #5
-		cmp r4, r6
+		loadn r6, #8
 
-		loadn r6, #42
-		sub r2, r2, r6
-		loadn r6, #7
+		inc r4
+		cmp r4, r5
 		jne erase_alien_1
 
 	loadn r4, #0 ; contador de aliens
-	loadn r5, #1 ; incrementador
-	loadn r6, #125
+	loadn r6, #128
 	add r2, r2, r6
-	loadn r6, #2
+	loadn r6, #0
 
 	erase_alien_2:
 		add r2, r2, r6
 		call apagarChar
 
-		add r4, r4, r5
-		loadn r6, #5
-		cmp r4, r6
+		loadn r6, #8
 
-		loadn r6, #42
-		sub r2, r2, r6
-		loadn r6, #7
+		inc r4
+		cmp r4, r5
 		jne erase_alien_2
 
 	loadn r4, #0 ; contador de aliens
-	loadn r5, #1 ; incrementador
-	loadn r6, #125
+	loadn r6, #128
 	add r2, r2, r6
-	loadn r6, #2
+	loadn r6, #0
 
 	erase_alien_3:
 		add r2, r2, r6
 		call apagarChar
 
-		add r4, r4, r5
-		loadn r6, #5
-		cmp r4, r6
+		loadn r6, #8
 
-		loadn r6, #42
-		sub r2, r2, r6
-		loadn r6, #7
+		inc r4
+		cmp r4, r5
 		jne erase_alien_3
 
 	loadn r4, #0 ; contador de aliens
-	loadn r5, #1 ; incrementador
-	loadn r6, #125
+	loadn r6, #128
 	add r2, r2, r6
-	loadn r6, #2
+	loadn r6, #0
 
 	erase_alien_4:
 		add r2, r2, r6
 		call apagarChar
 
-		add r4, r4, r5
-		loadn r6, #5
-		cmp r4, r6
+		loadn r6, #8
 
-		loadn r6, #42
-		sub r2, r2, r6
-		loadn r6, #7
+		inc r4
+		cmp r4, r5
 		jne erase_alien_4
 
 	pop r6
@@ -1096,7 +1077,7 @@ main_game:
 
 
 	call setup_alien_row
-	halt
+	
 
 main_game_loop:
 	loadn r2, #0
