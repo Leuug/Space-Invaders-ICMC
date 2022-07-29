@@ -165,6 +165,12 @@ atirador_2 : var #1
 atirador_3 : var #1
 atirador_4 : var #1
 
+atirador_pos_0 : var #1
+atirador_pos_1 : var #1
+atirador_pos_2 : var #1
+atirador_pos_3 : var #1
+atirador_pos_4 : var #1
+
 ;---- Inicio do Programa Principal -----
 
 main:
@@ -303,6 +309,7 @@ setup_alien_row:
 		add r2, r2, r6
 
 		push r0
+		push r1
 
 		;; verificando em qual iteração do loop estamos
 		loadn r0, #0
@@ -330,26 +337,58 @@ setup_alien_row:
 		;; verificando se alien existe
 		verify_0:
 			load r0, alien_0
+
+			load r1, atirador_0
+			cmp r0, r1
+			jne fim_verify_0
+
+			store atirador_pos_0, r2
+
 			jmp fim_verify_0
 
 		verify_1:
 			load r0, alien_1
+
+			load r1, atirador_1
+			cmp r0, r1
+			jne fim_verify_0
+
+			store atirador_pos_1, r2
+
 			jmp fim_verify_0
 
 		verify_2:
 			load r0, alien_2
+
+			load r1, atirador_2
+			cmp r0, r1
+			jne fim_verify_0
+
+			store atirador_pos_2, r2
+
 			jmp fim_verify_0
 
 		verify_3:
 			load r0, alien_3
+
+			load r1, atirador_3
+			cmp r0, r1
+			jne fim_verify_0
+
+			store atirador_pos_3, r2
+
 			jmp fim_verify_0
 
 		verify_4:
 			load r0, alien_4
 
-		fim_verify_0:
+			load r1, atirador_4
+			cmp r0, r1
+			jne fim_verify_0
 
-		push r1
+			store atirador_pos_4, r2
+
+		fim_verify_0:
 
 		loadn r1, #0
 		cmp r1, r0 ; alien == 0?
@@ -388,6 +427,7 @@ setup_alien_row:
 		add r2, r2, r6
 
 		push r0
+		push r1
 
 		;; verificando em qual iteração do loop estamos
 		loadn r0, #0
@@ -415,26 +455,58 @@ setup_alien_row:
 		;; verificando se alien existe
 		verify_5:
 			load r0, alien_5
+
+			load r1, atirador_0
+			cmp r0, r1
+			jne fim_verify_1
+
+			store atirador_pos_0, r2
+
 			jmp fim_verify_1
 
 		verify_6:
 			load r0, alien_6
+
+			load r1, atirador_1
+			cmp r0, r1
+			jne fim_verify_1
+
+			store atirador_pos_1, r2
+
 			jmp fim_verify_1
 
 		verify_7:
 			load r0, alien_7
+
+			load r1, atirador_2
+			cmp r0, r1
+			jne fim_verify_1
+
+			store atirador_pos_2, r2
+
 			jmp fim_verify_1
 
 		verify_8:
 			load r0, alien_8
+
+			load r1, atirador_3
+			cmp r0, r1
+			jne fim_verify_1
+
+			store atirador_pos_3, r2
+
 			jmp fim_verify_1
 
 		verify_9:
 			load r0, alien_9
 
-		fim_verify_1:
+			load r1, atirador_4
+			cmp r0, r1
+			jne fim_verify_1
 
-		push r1
+			store atirador_pos_4, r2
+
+		fim_verify_1:
 
 		loadn r1, #0
 		cmp r1, r0 ; alien == 0?
@@ -471,6 +543,7 @@ setup_alien_row:
 		add r2, r2, r6
 
 		push r0
+		push r1
 
 		;; verificando em qual iteração do loop estamos
 		loadn r0, #0
@@ -498,26 +571,58 @@ setup_alien_row:
 		;; verificando se alien existe
 		verify_10:
 			load r0, alien_10
+
+			load r1, atirador_0
+			cmp r0, r1
+			jne fim_verify_2
+
+			store atirador_pos_0, r2
+
 			jmp fim_verify_2
 
 		verify_11:
 			load r0, alien_11
+
+			load r1, atirador_1
+			cmp r0, r1
+			jne fim_verify_2
+
+			store atirador_pos_1, r2
+
 			jmp fim_verify_2
 
 		verify_12:
 			load r0, alien_12
+
+			load r1, atirador_2
+			cmp r0, r1
+			jne fim_verify_2
+
+			store atirador_pos_2, r2
+
 			jmp fim_verify_2
 
 		verify_13:
 			load r0, alien_13
+
+			load r1, atirador_3
+			cmp r0, r1
+			jne fim_verify_2
+
+			store atirador_pos_3, r2
+
 			jmp fim_verify_2
 
 		verify_14:
 			load r0, alien_14
 
-		fim_verify_2:
+			load r1, atirador_4
+			cmp r0, r1
+			jne fim_verify_2
 
-		push r1
+			store atirador_pos_4, r2
+
+		fim_verify_2:
 
 		loadn r1, #0
 		cmp r1, r0 ; alien == 0?
@@ -556,6 +661,7 @@ setup_alien_row:
 		add r2, r2, r6
 
 		push r0
+		push r1
 
 		;; verificando em qual iteração do loop estamos
 		loadn r0, #0
@@ -583,26 +689,58 @@ setup_alien_row:
 		;; verificando se alien existe
 		verify_15:
 			load r0, alien_15
+
+			load r1, atirador_0
+			cmp r0, r1
+			jne fim_verify_3
+
+			store atirador_pos_0, r2
+
 			jmp fim_verify_3
 
 		verify_16:
 			load r0, alien_16
+
+			load r1, atirador_1
+			cmp r0, r1
+			jne fim_verify_3
+
+			store atirador_pos_1, r2
+
 			jmp fim_verify_3
 
 		verify_17:
 			load r0, alien_17
+
+			load r1, atirador_2
+			cmp r0, r1
+			jne fim_verify_3
+
+			store atirador_pos_2, r2
+
 			jmp fim_verify_3
 
 		verify_18:
 			load r0, alien_18
+
+			load r1, atirador_3
+			cmp r0, r1
+			jne fim_verify_3
+
+			store atirador_pos_3, r2
+
 			jmp fim_verify_3
 
 		verify_19:
 			load r0, alien_19
 
-		fim_verify_3:
+			load r1, atirador_4
+			cmp r0, r1
+			jne fim_verify_3
 
-		push r1
+			store atirador_pos_4, r2
+
+		fim_verify_3:
 
 		loadn r1, #0
 		cmp r1, r0 ; alien == 0?
@@ -639,6 +777,7 @@ setup_alien_row:
 		add r2, r2, r6
 
 		push r0
+		push r1
 
 		;; verificando em qual iteração do loop estamos
 		loadn r0, #0
@@ -666,26 +805,58 @@ setup_alien_row:
 		;; verificando se alien existe
 		verify_20:
 			load r0, alien_20
+
+			load r1, atirador_0
+			cmp r0, r1
+			jne fim_verify_4
+
+			store atirador_pos_0, r2
+
 			jmp fim_verify_4
 
 		verify_21:
 			load r0, alien_21
+
+			load r1, atirador_1
+			cmp r0, r1
+			jne fim_verify_4
+
+			store atirador_pos_1, r2
+
 			jmp fim_verify_4
 
 		verify_22:
 			load r0, alien_22
+
+			load r1, atirador_2
+			cmp r0, r1
+			jne fim_verify_4
+
+			store atirador_pos_2, r2
+
 			jmp fim_verify_4
 
 		verify_23:
 			load r0, alien_23
+
+			load r1, atirador_3
+			cmp r0, r1
+			jne fim_verify_4
+
+			store atirador_pos_3, r2
+
 			jmp fim_verify_4
 
 		verify_24:
 			load r0, alien_24
-			
-		fim_verify_4:
 
-		push r1
+			load r1, atirador_4
+			cmp r0, r1
+			jne fim_verify_4
+
+			store atirador_pos_4, r2
+
+		fim_verify_4:
 
 		loadn r1, #0
 		cmp r1, r0 ; alien == 0?
@@ -719,6 +890,7 @@ setup_alien_row:
 	pop r2
 	pop r1
 	pop r0
+
 	rts
 
 erase_alien_row:
