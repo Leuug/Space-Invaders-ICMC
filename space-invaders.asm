@@ -408,7 +408,6 @@ setup_alien_row:
 		jne imprime_alien_0
 
 	loadn r0, #alien2
-	loadn r1, #alien2Gaps
 	loadn r4, #0 ; contador de aliens
 	loadn r6, #128
 	add r2, r2, r6
@@ -626,7 +625,6 @@ setup_alien_row:
 		jne imprime_alien_2
 
 	loadn r0, #alien1
-	loadn r1, #alien1Gaps
 	loadn r4, #0 ; contador de aliens
 	loadn r6, #128
 	add r2, r2, r6
@@ -946,6 +944,7 @@ erase_alien_row:
 	pop r3
 	pop r2
 	pop r1
+
 	rts
 
 alien_update:
@@ -955,14 +954,14 @@ alien_update:
 	push r3
 	push r4
 
-	call erase_alien_row
-
 	load r0, alienPosition
 	loadn r1, #1
 
 	loadn r2, #5
 	load r3, alien_mov_esq
 	loadn r4, #0
+
+	call erase_alien_row
 
 	cmp r3, r4
 	jne mov_alien_esq
@@ -1001,6 +1000,7 @@ alien_update:
 	pop r0
 
 	rts
+
 main_game:
 	push r0
 	push r1
@@ -1077,7 +1077,6 @@ main_game:
 
 
 	call setup_alien_row
-	
 
 main_game_loop:
 	loadn r2, #0
